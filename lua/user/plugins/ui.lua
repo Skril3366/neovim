@@ -9,6 +9,16 @@ return {
   },
   "stevearc/dressing.nvim",
   {
+    "stevearc/oil.nvim",
+    opts = {},
+    -- Optional dependencies
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("oil").setup()
+      vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+    end
+  },
+  {
     "folke/trouble.nvim",
     dependencies = "nvim-tree/nvim-web-devicons",
     keys = {

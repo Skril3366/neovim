@@ -1,17 +1,27 @@
 local user_config = require("user.config")
 return {
   {
-    "numToStr/Comment.nvim",
-    opts = {
-      -- add any options here
-    },
+    "numToStr/Comment.nvim", -- Toggle comments
+    opts = {},
     lazy = false,
   },
   {
-    "echasnovski/mini.nvim",
+    "echasnovski/mini.trailspace",
     config = function()
-      require("mini.pairs").setup({})   -- auto pair brackets and quotes
-      require("mini.trailspace").setup({}) -- highlight and remove trailing spaces
+      local trailspace = require("mini.trailspace")
+      trailspace.setup() -- highlight and remove trailing spaces
+      vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+        callback = function()
+          trailspace.trim()
+          trailspace.trim_last_lines()
+        end,
+      })
+    end,
+  },
+  {
+    "echasnovski/mini.pairs",
+    config = function()
+      require("mini.pairs").setup() -- auto pair brackets and quotes
     end,
   },
   {
@@ -30,11 +40,21 @@ return {
 
       local nnoremap = require("user.utils.keymap").nnoremap
 
-      nnoremap("<leader>h", function() harpoon:list():append() end, "Add file to Harpoon list")
-      nnoremap("<leader>U", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, "Toggle Harpoon quick menu")
-      nnoremap("<leader>n", function() harpoon:list():select(1) end, "Select Harpoon entry 1")
-      nnoremap("<leader>e", function() harpoon:list():select(2) end, "Select Harpoon entry 2")
-      nnoremap("<leader>i", function() harpoon:list():select(3) end, "Select Harpoon entry 3")
+      nnoremap("<leader>h", function()
+        harpoon:list():append()
+      end, "Add file to Harpoon list")
+      nnoremap("<leader>U", function()
+        harpoon.ui:toggle_quick_menu(harpoon:list())
+      end, "Toggle Harpoon quick menu")
+      nnoremap("<leader>n", function()
+        harpoon:list():select(1)
+      end, "Select Harpoon entry 1")
+      nnoremap("<leader>e", function()
+        harpoon:list():select(2)
+      end, "Select Harpoon entry 2")
+      nnoremap("<leader>i", function()
+        harpoon:list():select(3)
+      end, "Select Harpoon entry 3")
     end,
   },
 

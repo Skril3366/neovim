@@ -54,6 +54,9 @@ wo.signcolumn = "yes:2" -- automatically set column for signs
 o.wildmenu = true -- completion while writing command (in : mode)
 o.textwidth = 80 -- automatically breaks the line if it's longer than 80 symbols
 
+-- set conceal level
+wo.conceallevel = 1
+
 -- update file when it's changed
 o.autoread = true
 vim.api.nvim_create_autocmd("FocusGained", {

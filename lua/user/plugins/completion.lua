@@ -45,13 +45,18 @@ return {
           if vim.api.nvim_get_mode().mode == "c" then
             return true
           else
-            return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
+            return not context.in_treesitter_capture("comment")
+              and not context.in_syntax_group("Comment")
           end
         end,
 
         mapping = {
-          ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-          ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<C-n>"] = cmp.mapping.select_next_item({
+            behavior = cmp.SelectBehavior.Insert,
+          }),
+          ["<C-p>"] = cmp.mapping.select_prev_item({
+            behavior = cmp.SelectBehavior.Insert,
+          }),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-e>"] = cmp.mapping.abort(),
           ["<c-y>"] = cmp.mapping(
@@ -74,7 +79,7 @@ return {
           { name = "dictionary" },
           { name = "path" },
           { name = "calc" },
-          { name = "buffer",                 keyword_length = 5 },
+          { name = "buffer", keyword_length = 5 },
         },
         formatting = {
           format = lspkind.cmp_format({

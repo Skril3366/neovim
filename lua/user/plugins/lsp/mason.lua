@@ -10,7 +10,6 @@ return {
     lazy = false,
     config = function()
       require("mason").setup({})
-      local masonlsp = require("mason-lspconfig")
 
       -- Set virtual text support
       vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
@@ -35,15 +34,15 @@ return {
           buf.format({ async = true })
         end,
       },
-      { "<leader>a",  buf.code_action },
-      { "gd",         buf.definition },
-      { "gD",         buf.declaration },
-      { "gi",         buf.implementation },
-      { "K",          buf.hover },
-      { "gr",         buf.rename },
+      { "<leader>a", buf.code_action },
+      { "gd", buf.definition },
+      { "gD", buf.declaration },
+      { "gi", buf.implementation },
+      { "K", buf.hover },
+      { "gr", buf.rename },
       { "<leader>dp", diagnostic.goto_prev },
       { "<leader>dn", diagnostic.goto_next },
-      { "<leader>d",  diagnostic.open_float },
+      { "<leader>d", diagnostic.open_float },
     },
     config = function()
       local masonlsp = require("mason-lspconfig")
@@ -54,7 +53,10 @@ return {
         end,
       })
 
-      masonlsp.setup({ ensure_installed = conf.ensure_installed.lsp })
+      masonlsp.setup({
+        ensure_installed = conf.ensure_installed.lsp,
+        automatic_installation = true,
+      })
       local attach = function(_)
         print("LSP has started")
       end
@@ -92,12 +94,13 @@ return {
   {
     "jay-babu/mason-null-ls.nvim",
     dependencies = {
-      "jose-elias-alvarez/null-ls.nvim",
+      "nvimtools/none-ls.nvim",
     },
     config = function()
       local masonnull = require("mason-null-ls")
       masonnull.setup({
         ensure_installed = conf.ensure_installed.null_ls,
+        automatic_installation = true,
       })
     end,
   },

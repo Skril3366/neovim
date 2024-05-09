@@ -4,8 +4,7 @@ if should_set_up_rust then
   return {
     "simrat39/rust-tools.nvim",
     event = "BufEnter *.rs, Cargo.toml",
-    init = function()
-    end,
+    init = function() end,
     config = function()
       local rt = require("rust-tools")
       rt.setup({
