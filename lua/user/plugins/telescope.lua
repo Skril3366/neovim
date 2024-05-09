@@ -122,9 +122,10 @@ return {
               ["<C-d>"] = actions.delete_buffer,
             },
             i = {
+              ["<C-f>"] = actions.to_fuzzy_refine,
               ["<C-Up>"] = actions.cycle_history_prev,
               ["<C-Down>"] = actions.cycle_history_next,
-              ["<C-d>"] = actions.delete_buffer,
+              ["<C-d>"] = actions.remove_selection,
               ["<C-j>"] = actions.move_selection_previous,
               ["<C-k>"] = actions.move_selection_next,
               -- ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,

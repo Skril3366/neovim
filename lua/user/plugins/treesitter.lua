@@ -1,6 +1,7 @@
 return {
   {
     "David-Kunz/markid",
+    dependencies = "nvim-treesitter/nvim-treesitter",
     config = function()
       local markid = require("markid")
 

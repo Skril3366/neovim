@@ -20,7 +20,7 @@ if should_set_up_scala then
         superMethodLensesEnabled = true,
         showInferredType = true,
         showImplicitConversionsAndClasses = true,
-        fallbackScalaVersion = "3.2.0",
+        fallbackScalaVersion = "2.13.10",
       }
 
       metals_config.on_attach = function(_, _)
@@ -35,7 +35,7 @@ if should_set_up_scala then
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities.textDocument.completion.completionItem.snippetSupport = true
       metals_config.capabilities =
-        require("cmp_nvim_lsp").default_capabilities(capabilities)
+      require("cmp_nvim_lsp").default_capabilities(capabilities)
 
       metals.initialize_or_attach(metals_config)
 

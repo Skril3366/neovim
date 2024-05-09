@@ -20,7 +20,6 @@ return {
   },
   {
     "williamboman/mason-lspconfig.nvim",
-    after = "mason.nvim",
     dependencies = {
       "neovim/nvim-lspconfig",
       "williamboman/mason.nvim",
@@ -70,6 +69,23 @@ return {
         ["lua_ls"] = function(_)
           require("lspconfig").lua_ls.setup(require(lsp_servers .. "lua"))
         end,
+        ["pyright"] = function(_)
+          local lspconfig = require("lspconfig")
+          lspconfig.util.add_hook_before(lspconfig.util.on_setup, function(config)
+            print("Pyright before init")
+            local Path = require("plenary.path")
+            local venv = Path:new((config.root_dir:gsub("/", Path.path.sep)), ".venv")
+
+            if venv:joinpath("bin"):is_dir() then
+              config.settings.python.pythonPath = tostring(venv:joinpath("bin", "python"))
+              print( "Using virtual environment: " .. config.settings.python.pythonPath)
+            else
+              print("No virtual environment found")
+            end
+          end
+          )
+          require("lspconfig").pyright.setup({ on_attach = attach })
+        end,
         ["jdtls"] = function(_)
           -- Empty function not to run it from Mason
         end,
@@ -79,6 +95,15 @@ return {
             filetypes = { "sh", "zsh", "zshrc" },
           })
         end,
+        -- ["yamls"] = function(_)
+        --   require("lspconfig").bashls.setup({
+        --     settings = {
+        --       yaml = {
+        --         singleQuote = true,
+        --       },
+        --     },
+        --   })
+        -- end,
       })
     end,
   },
