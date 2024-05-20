@@ -93,7 +93,7 @@ return {
           search = vim.fn.expand("<cword>"),
           word_match = "-w",
         })
-      end, { noremap = true, silent = true })
+      end, "Search the word under the cursor")
 
       telescope.setup({
         defaults = {
