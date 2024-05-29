@@ -55,7 +55,7 @@ o.wildmenu = true -- completion while writing command (in : mode)
 o.textwidth = 80 -- automatically breaks the line if it's longer than 80 symbols
 
 -- set conceal level
-wo.conceallevel = 1
+wo.conceallevel = 0
 
 -- update file when it's changed
 o.autoread = true
