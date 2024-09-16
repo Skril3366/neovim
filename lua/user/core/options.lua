@@ -21,8 +21,17 @@ o.shiftwidth = 2 -- number of spaces that form 1 tab
 o.expandtab = true -- insert spaces instead of tabs in insert mode
 
 -- Folding
-wo.foldmethod = "expr" -- default fold method as expression
-wo.foldexpr = "nvim_treesitter#foldexpr()" -- tree sitter foldmethod
+-- wo.foldmethod = "expr" -- default fold method as expression
+-- wo.foldexpr = "nvim_treesitter#foldexpr()" -- tree sitter foldmethod
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function()
+    vim.wo.foldmethod = "expr"
+    vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+  end
+})
+
+
+
 o.foldlevelstart = 99
 wo.foldlevel = 99
 
