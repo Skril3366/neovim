@@ -1,9 +1,9 @@
 return {
   enabled_plugins = {
-    copilot = true,
+    copilot = false,
   },
   colorscheme = {
-    name = "tokyonight",
+    name = "catppuccin",
     transparent_background = true,
   },
   lsp = {
@@ -44,6 +44,7 @@ return {
         "cspell",
         "golangci-lint",
         "isort",
+        "ltex-ls",
         -- "misspell",
         "prettierd",
         "selene",
@@ -58,6 +59,7 @@ return {
         "google_java_format",
         "sql_formatter",
         "sqlfluff",
+        "latexindent",
       },
     },
   },
